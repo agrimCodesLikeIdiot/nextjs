@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 
 export default function Home() {
-  const [lat, setLat] = useState();
-  const [lon, setLon] = useState();
+  const [city, setCity] = useState()
+  const [lat, setLat] = useState()
+  const [lon, setLon] = useState()
   const [sname, setSname] = useState();
   const [units, setUnits] = useState("metric");
 
@@ -31,7 +31,7 @@ export default function Home() {
   }
 
   fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${units}&appid=38334a8188792417c8a04443ee8ffaa5`
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&appid=38334a8188792417c8a04443ee8ffaa5`
   )
     .then((data) => data.json())
     .then((res) => {
@@ -53,18 +53,16 @@ export default function Home() {
     <>
       <div className="p-[60px] lg:block hidden">
         <nav className="fixed top-0 left-0 right-0 w-screen h-[60px] flex items-center justify-center">
-          <Link href="/city">
-            <button
-              className="w-[90vw] h-[40px] rounded-3xl bg-[#1a2430] pl-[60px] outline-none hover:bg-[#0c0d11] transiton ease-in-out duration-300 flex space-x-2 items-center"
-              placeholder=""
-            >
-              <img
-                src="https://img.icons8.com/ios-filled/20/ffffff/search--v1.png"
-                alt="search--v1"
-              />
-              <span>Search weather by city name. example: London</span>
-            </button>
-          </Link>
+          <img
+            src="https://img.icons8.com/ios-filled/20/ffffff/search--v1.png"
+            alt="search--v1"
+            className="p-2 absolute"
+          />
+          <input
+            className="placeholder:text-white absolute w-[90%] h-[40px] rounded-3xl bg-[#1a2430] pl-[60px] outline-none focus:bg-[#0c0d11] transiton ease-in-out duration-300"
+            placeholder="Search weather by city name. example: London"
+            onChange={(e) => setCity(e.target.value)}
+          />
         </nav>
         <div className="flex space-x-2 mt-[40px]">
           <div className="w-[500px] h-[260px] bg-[#1a2430] rounded-lg p-[15px]">

@@ -17,8 +17,8 @@
 }
 
 body {
-  color: black;
-  background: yellow;
+  color: white;
+  background: #141b24;
 }
 /* width */
 ::-webkit-scrollbar {
@@ -34,7 +34,7 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: black;
+  background: rgba(255, 255, 255, 0.37);
   border-radius: 25px;
 }
 
